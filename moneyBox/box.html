@@ -1,0 +1,264 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Gstyle.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Drop Box Game</title>
+</head>
+<body id="core">
+    <div id="body">
+    <center>
+    <h1 id="title">PENNY DROP BOX</h1>
+    <input type="text" id="user1" placeholder="User 1 (Starts first)" style="border-radius: 0.1cm;" class="firstPage"><br />
+    <input type="text" id="user2" placeholder="User 2" style="border-radius: 0.1cm;" class="firstPage"><br /><br />
+    <input type="button" value="Start" id="start" style="border-radius: 0.4cm;" class="firstPage" onclick="theMain();"><br />
+    <img src="dollar.png" width="650" height="240" class="firstPage" id="dollar">
+    </center>
+    </div>
+</body>
+</html>
+
+<script>
+function theMain(){
+
+     let s=5;
+     let s2=5; 
+     let cpt=0;
+     let flag1 = true;
+     let flag2 = false;
+     let u1 = document.getElementById("user1").value;
+     let u2 = document.getElementById("user2").value;
+     $(".firstPage").remove();
+
+     //creating where to put user's names after it is inserted
+     let player1 = document.createElement("h3");
+     if(u1==="") player1.innerHTML = "User 1";
+     else player1.innerHTML = u1;
+     player1.className="p1"
+     document.getElementById("body").appendChild(player1);
+     let player2 = document.createElement("h3");
+     if(u2==="") player2.innerHTML = "User 2";
+     else player2.innerHTML = u2;
+     player2.className="p2"
+     document.getElementById("body").appendChild(player2);
+     
+     //creating divs where to put dices
+     let firstDiceDiv =  document.createElement("div");
+     firstDiceDiv.tabIndex = "0";
+     firstDiceDiv.id = "diceDiv1"
+     document.getElementById("body").appendChild(firstDiceDiv);
+     let secondDiceDiv =  document.createElement("div");
+     secondDiceDiv.id = "diceDiv2"
+     secondDiceDiv.tabIndex = "0";
+     document.getElementById("body").appendChild(secondDiceDiv);
+
+     //creating dices
+     let dice1 = document.createElement("img");
+     dice1.id = 11;
+     dice1.src = "dice1.png";
+     dice1.height = 145;
+     dice1.width = 145;
+     firstDiceDiv.appendChild(dice1);
+     let dice2 = document.createElement("img");
+     dice2.id = 21;
+     dice2.src = "dice1.png";
+     dice2.height = 145;
+     dice2.width = 145;
+     secondDiceDiv.appendChild(dice2);
+
+     //creating the box which is divs inside divs
+
+     let box = document.createElement("div");
+     box.id  = "box";
+     document.getElementById("body").appendChild(box);
+        //boxd is for the dollar in the box
+     let boxd = document.createElement("div");
+     boxd.id  = "boxd";
+     box.appendChild(boxd);
+     let boxCover = document.createElement("div");
+     boxCover.id = "boxCover";
+     boxd.appendChild(boxCover);
+     
+     for(let x=1;x<=6;x++){
+         let tmp = document.createElement("div");
+         tmp.className = "whole";
+         if(x!==6) tmp.setAttribute("data-flag","0");
+         tmp.id = "whole"+x;
+         document.getElementById("boxCover").appendChild(tmp);
+         let cIn = document.createElement("div");
+         cIn.className = "c";
+         tmp.appendChild(cIn);
+     }
+
+     $("#boxCover").hide();
+     setTimeout(function(){
+         $("#boxCover").slideDown("slow");
+        },1500);
+    
+     //end of the boxxxxxx
+
+     //and here the divs that will contain scores
+     let coinContainer1 = document.createElement("div");
+     coinContainer1.id = "counter1";
+     coinContainer1.className = "coinContainer";
+     document.getElementById("body").appendChild(coinContainer1);
+
+     let score1 = document.createElement("h1");
+     score1.innerHTML = "X 5"
+     score1.className = "score";
+     score1.id = "score1";
+     coinContainer1.appendChild(score1);
+
+     let coin1 = document.createElement("img");
+     coin1.className="coin";
+     coin1.src="coin.png";
+     coinContainer1.appendChild(coin1);
+     //coins
+     let coinContainer2 = document.createElement("div");
+     coinContainer2.id = "counter2";
+     coinContainer2.className = "coinContainer";
+     document.getElementById("body").appendChild(coinContainer2);
+
+     let score2 = document.createElement("h1");
+     score2.innerHTML = "X 5"
+     score2.className = "score";
+     score2.id = "score2";
+     coinContainer2.appendChild(score2);
+
+     let coin2 = document.createElement("img");
+     coin2.className="coin";
+     coin2.src="coin.png";
+     coinContainer2.appendChild(coin2);
+    
+    $("#diceDiv1").on("click",function(){
+                                if(flag1===true){
+                                flag1 = false ; flag2 = true ;
+                                i=2;
+                                let my1=setInterval(function(){
+                                dice1.src = "dice"+(i++)+".png";
+                                },200);
+                                setTimeout(function(){clearInterval(my1)},1200);
+                                //the random result should show last 
+                                let rollValue1 = Math.floor(Math.random()*6)+1;
+                                setTimeout(function(){
+                                    dice1.src = "dice"+rollValue1+".png";}
+                                    ,1201);
+                               
+                            if(rollValue1 === 6 ){
+                                setTimeout(function(){
+                                   s--;
+                                   document.getElementById("score1").textContent = "X "+s;
+                                   document.getElementById("whole"+rollValue1).firstChild.style.backgroundColor ="gainsboro"
+                                   setTimeout(function(){document.getElementById("whole"+rollValue1).firstChild.style.backgroundColor ="gainsboro"},200);
+                                   setTimeout(function(){document.getElementById("whole"+rollValue1).firstChild.style.backgroundColor ="black"},300)  
+                                   if(s===0) wins(u1);            
+                                },1202);
+                            }
+                                else if(document.getElementById("whole"+rollValue1).getAttribute("data-flag")==="0"){
+                                   document.getElementById("whole"+rollValue1).setAttribute("data-flag","1"); 
+                                   cpt++;
+                                   setTimeout(function(){
+                                   document.getElementById("whole"+rollValue1).firstChild.style.backgroundColor ="gainsboro"
+                                   s--;
+                                   document.getElementById("score1").textContent = "X "+s;
+                                   if(s===0) wins(u1);                        
+                                },1202);
+                            }
+                            else{
+                                s+=cpt;
+                                setTimeout(function(){
+                                   document.getElementById("score1").textContent = "X "+s; 
+                                   for(let r=0;r<document.getElementsByClassName("whole").length;r++){
+                                    document.getElementsByClassName("whole")[r].firstChild.style.backgroundColor ="black";
+                                    document.getElementsByClassName("whole")[r].setAttribute("data-flag","0");
+                                    cpt=0;
+                                   }                               
+                                },1202);
+                            }
+                        }
+                        
+                        }); 
+    $("#diceDiv2").on("click",function(){
+                                if(flag2===true){
+                                flag2 = false ; flag1 = true ;
+                                i=2;
+                                let my2=setInterval(function(){
+                                dice2.src = "dice"+(i++)+".png";
+                                },200);
+                                setTimeout(function(){clearInterval(my2)},1200);
+                                let rollValue2 = Math.floor(Math.random()*6)+1;
+                                setTimeout(function(){                                    
+                                    dice2.src = "dice"+rollValue2+".png";}
+                                    ,1201);
+                                if(rollValue2 === 6 ){
+                                setTimeout(function(){
+                                   s2--;
+                                   document.getElementById("score2").textContent = "X "+s2; 
+                                   document.getElementById("whole"+rollValue2).firstChild.style.backgroundColor ="gainsboro"
+                                   setTimeout(function(){document.getElementById("whole"+rollValue2).firstChild.style.backgroundColor ="gainsboro"},200);
+                                   setTimeout(function(){document.getElementById("whole"+rollValue2).firstChild.style.backgroundColor ="black"},300);
+                                   if(s2===0) wins(u2);                            
+                                },1202);
+                            }
+                                else if(document.getElementById("whole"+rollValue2).getAttribute("data-flag")==="0"){
+                                   document.getElementById("whole"+rollValue2).setAttribute("data-flag","1"); 
+                                   cpt++;
+                                   setTimeout(function(){
+                                   document.getElementById("whole"+rollValue2).firstChild.style.backgroundColor ="gainsboro"
+                                   s2--;
+                                   document.getElementById("score2").textContent = "X "+s2; 
+                                   if(s2===0) wins(u2);                            
+                                },1202);
+                            }
+                            else{
+                                s2+=cpt;
+                                setTimeout(function(){
+                                   document.getElementById("score2").textContent = "X "+s2; 
+                                   for(let t=0;t<document.getElementsByClassName("whole").length;t++){
+                                    document.getElementsByClassName("whole")[t].firstChild.style.backgroundColor ="black";
+                                    document.getElementsByClassName("whole")[t].setAttribute("data-flag","0"); 
+                                    cpt=0;
+                                   }                               
+                                },1202);
+                            }              
+                          }
+                        }); 
+}
+
+function wins(winner){
+  $("#body").remove();
+  let con = document.createElement("div");
+  con.className = "con";
+  document.getElementById("core").appendChild(con);
+  let win = document.createElement("h1");
+  win.innerHTML = "Congrats "+winner+" YOU WON!!!";
+  win.className = "write";
+  win.id="p"
+  con.appendChild(win);
+  let tryagain = document.createElement("h3");
+  tryagain.className = "write";
+  tryagain.innerHTML = "Have another shot ?!"
+  document.getElementById("core").appendChild(tryagain);
+  let bot = document.createElement("button");
+  bot.id="bot"
+  bot.innerHTML = "Yes"
+  document.getElementById("core").appendChild(bot);
+  $("#core").addClass("addedForBody");
+  $(con).hide();
+  $(bot).hide();
+  $(con).fadeIn("slow");
+  $(bot).fadeIn("1500");
+  $(bot).click(function(){
+      location.reload();
+  });
+
+}
+
+</script>
+
+
+

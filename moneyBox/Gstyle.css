@@ -1,0 +1,182 @@
+body{
+    background-image: url("wood.jpg");
+}
+#title{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: gold;
+    border-left-style: groove;
+    border-right-style: groove;
+    border-radius: 0.2cm;
+}
+
+#dollar{
+    position: relative;
+    top: 2cm;
+}
+.p1{
+    position: relative;
+    background-color: white;
+    width: 3cm;
+    top: 8.813cm;
+    left: 25.2cm;
+    border-radius: 0.3cm;
+    padding-left: 1.1cm;
+}
+.p2{
+    position: relative;
+    top: 7.75cm;
+    background-color: white;
+    width: 3cm;
+    border-radius: 0.2cm;
+    padding-left: 1.1cm;
+}
+#diceDiv1{
+    background-color: red;
+    width: 150;
+    height: 150;
+    position: relative;
+    left: 25.23cm;
+    top: 2.56cm;
+}
+#diceDiv2{
+    background-color:green;
+    width: 150;
+    height: 150;
+    position: relative;
+    bottom: 1.43cm;
+    left: 0.12cm;
+}
+.coinContainer{
+    height: 50;
+    width: 160;
+}
+#counter1{
+    background-color: red;
+    position: relative;
+    bottom: 18.35cm;
+    left: 25cm;
+    border-radius: 0.2cm;
+}
+#counter2{
+    background-color: green;
+    position: relative;
+    bottom: 20.25cm;
+    left: 0.07cm;
+    border-radius: 0.2cm;
+}
+.coin{
+    width: 70;
+    min-height: 30;
+    position: relative;
+    bottom: 1.3cm;
+    right: 0.2cm;
+}
+#box{
+    height: 220;
+    width: 470;
+    background-color: rgba(156, 107, 15, 0.952);
+    position: relative;
+    left: 8.4cm;
+    bottom: 11cm;
+    box-sizing: content-box;
+    border: solid black 1px;
+}
+#boxd{
+    height: 218;
+    width: 449.08;
+    position: relative;
+    left: 0.3cm;
+  
+    background-image: url("dollar.png");
+    background-size: 12cm;
+}
+#boxCover{
+    background-image: url("myboxcover.jpg");
+    height: 211;
+    width: 449.08;
+    position: relative;
+    top: 0.1cm;
+    background-size: 10cm;
+    box-sizing: content-box;
+    border: solid black 2.5px;
+    border-bottom: solid black 7px;
+    
+}
+.whole{
+    position: relative;
+    height: 10;
+    width: 90;
+    background-color: black;
+    
+}
+#whole1{
+    margin-left: 1cm;
+    margin-top: 1cm;
+}
+#whole2{
+    left: 5cm;
+    bottom: 0.25cm;
+}
+#whole3{
+    left: 8.9cm;
+    bottom: 0.52cm;
+}
+#whole4{
+    left: 1cm;
+    top: 0.8cm;
+}
+#whole5{
+    left: 8.9cm;
+    top: 0.54cm;
+}
+#whole6{
+    left: 5cm;
+    top: 1.52cm;
+}
+.score{
+    color: aliceblue;
+    font-weight: 300;
+    font-style: italic;
+    position: relative;
+    left: 1.9cm;
+    top :0.3cm
+}
+.c{
+    background-color: black;
+    height: 3;
+    width: 70;
+    margin-left: 0.25cm;
+    position: relative;
+    top: 0.1cm;
+    border-radius: 1cm;
+}
+.addedForBody{
+    background-image: url("congrats.jpg");
+    background-size: 30cm;
+}
+.write{
+    color: aliceblue;
+    position: relative;
+    font-size: 2cm;
+    font-style: italic;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 700;
+    background-color: black;
+    width: 930;
+}
+.con{
+    position: relative;
+    left: 2cm;
+    background-size: 10cm;
+    width: 1200;
+}
+#bot{
+    border-radius: 1cm;
+    height: 40;
+    width: 87;
+    font-size: 0.5cm;
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: relative;
+    left: 26cm;
+}
